@@ -24,10 +24,18 @@ close ($fh);
 # print $array[9], "\n";
 
 # Array element 9 (ie the 10th row) is where the data starts.  
-my @split_parameters = split(/\|/, $array[9]);
+# my @split_parameters = split(/\|/, $array[9]);
 
-for ( my $i = 0 ; $i < $#split_parameters ; $i++ )
+my $j = 0;
+foreach my $element (@array)
 {
-  print "$split_parameters[$i]\n";
+    my @split_parameters = split(/\|/, $array[$j]);
+    if ( $split_parameters[0] =~ /^EDMT$/ )
+    {
+		for ( my $i = 0 ; $i < $#split_parameters ; $i++ )
+		{
+		  print "$split_parameters[$i]\n";
+		}
+    }
+    $j += 1;
 }
-
