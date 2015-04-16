@@ -29,10 +29,11 @@ close ($fh);
 my $j = 0;
 foreach my $element (@array)
 {
-    my @split_parameters = split(/\|/, $array[$j]);
+    my @split_parameters = split(/\s*\|\s*/, $array[$j]); # <--- MODIFY THIS LINE TO READ TRACYS EDM FILES
+    $split_parameters[0] =~ s/^\s*//; # <--- removes blank space in front of keyword EDMT 
     if ( $split_parameters[0] =~ /^EDMT$/ )
     {
-		for ( my $i = 0 ; $i < $#split_parameters ; $i++ )
+		for ( my $i = 0 ; $i < $#split_parameters+1 ; $i++ )
 		{
 		  print "$split_parameters[$i]\n";
 		}
